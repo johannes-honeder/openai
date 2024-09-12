@@ -80,7 +80,7 @@ interface class OpenAIChat implements OpenAIChatBase {
     double? frequencyPenalty,
     Map<String, dynamic>? logitBias,
     String? user,
-    Map<String, String>? responseFormat,
+    Map<String, dynamic>? responseFormat,
     int? seed,
     bool? logprobs,
     int? topLogprobs,
@@ -91,8 +91,7 @@ interface class OpenAIChat implements OpenAIChatBase {
       body: {
         "model": model,
         "messages": messages.map((message) => message.toMap()).toList(),
-        if (tools != null)
-          "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
+        if (tools != null) "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
         if (toolChoice != null) "tool_choice": toolChoice,
         if (temperature != null) "temperature": temperature,
         if (topP != null) "top_p": topP,
@@ -176,7 +175,7 @@ interface class OpenAIChat implements OpenAIChatBase {
     double? presencePenalty,
     double? frequencyPenalty,
     Map<String, dynamic>? logitBias,
-    Map<String, String>? responseFormat,
+    Map<String, dynamic>? responseFormat,
     int? seed,
     String? user,
     http.Client? client,
@@ -187,8 +186,7 @@ interface class OpenAIChat implements OpenAIChatBase {
         "model": model,
         "stream": true,
         "messages": messages.map((message) => message.toMap()).toList(),
-        if (tools != null)
-          "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
+        if (tools != null) "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
         if (toolChoice != null) "tool_choice": toolChoice,
         if (temperature != null) "temperature": temperature,
         if (topP != null) "top_p": topP,
@@ -225,7 +223,7 @@ interface class OpenAIChat implements OpenAIChatBase {
     Map<String, dynamic>? logitBias,
     String? user,
     http.Client? client,
-    Map<String, String>? responseFormat,
+    Map<String, dynamic>? responseFormat,
     int? seed,
   }) {
     return OpenAINetworkingClient.postStream<OpenAIStreamChatCompletionModel>(
@@ -234,8 +232,7 @@ interface class OpenAIChat implements OpenAIChatBase {
         "model": model,
         "stream": true,
         "messages": messages.map((message) => message.toMap()).toList(),
-        if (tools != null)
-          "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
+        if (tools != null) "tools": tools.map((tool) => tool.toMap()).toList(growable: false),
         if (toolChoice != null) "tool_choice": toolChoice,
         if (temperature != null) "temperature": temperature,
         if (topP != null) "top_p": topP,
